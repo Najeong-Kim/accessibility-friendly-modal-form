@@ -31,7 +31,9 @@ const ModalContainer = ({ onClose, children }: ModalContainerProps) => {
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={handleOverlayClick}
     >
-      <div>{children}</div>
+      <div className="max-h-[90vh] overflow-y-auto w-full max-w-md">
+        {children}
+      </div>
     </div>
   );
 };

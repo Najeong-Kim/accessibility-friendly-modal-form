@@ -3,9 +3,16 @@ import React, { useEffect } from "react";
 interface ModalContainerProps {
   onClose: () => void;
   children: React.ReactNode;
+  titleId?: string;
+  descriptionId?: string;
 }
 
-const ModalContainer = ({ onClose, children }: ModalContainerProps) => {
+const ModalContainer = ({
+  onClose,
+  children,
+  titleId,
+  descriptionId,
+}: ModalContainerProps) => {
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -30,6 +37,10 @@ const ModalContainer = ({ onClose, children }: ModalContainerProps) => {
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={handleOverlayClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
     >
       <div className="max-h-[90vh] overflow-y-auto w-full max-w-md">
         {children}

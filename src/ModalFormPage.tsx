@@ -1,4 +1,4 @@
-import ModalContainer from "./modal/ModalContainer";
+import FormModal from "./modal/FormModal";
 import useModal from "./useModal";
 
 const ModalFormPage = () => {
@@ -12,13 +12,7 @@ const ModalFormPage = () => {
       >
         Open Modal
       </button>
-      {open && (
-        <ModalContainer onClose={closeModal}>
-          <div className="p-6 bg-white rounded-lg shadow-xl">
-            <h1 className="text-xl font-semibold mb-4">Modal Title</h1>
-          </div>
-        </ModalContainer>
-      )}
+      {open && <FormModal closeModal={closeModal} />}
     </div>
   );
 };

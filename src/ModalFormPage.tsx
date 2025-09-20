@@ -1,6 +1,14 @@
+import useModal from "./useModal";
+
 const ModalFormPage = () => {
-  /* 여기에 구현해 주세요 */
-  return <div>ModalFormPage</div>;
+  const { open, openModal } = useModal();
+
+  return (
+    <div>
+      <button onClick={openModal}>trigger</button>
+      {open && <div>Form</div>}
+    </div>
+  );
 };
 
 export default ModalFormPage;

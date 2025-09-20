@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModalContainer from "./ModalContainer";
 
 interface FormModalProps {
@@ -8,6 +8,13 @@ interface FormModalProps {
 const FormModal = ({ closeModal }: FormModalProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.focus();
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +25,9 @@ const FormModal = ({ closeModal }: FormModalProps) => {
   return (
     <ModalContainer onClose={closeModal}>
       <div className="p-6 bg-white rounded-lg shadow-xl">
-        <h1 className="text-xl font-semibold mb-4">연락처 폼</h1>
+        <h1 ref={titleRef} tabIndex={-1} className="text-xl font-semibold mb-4">
+          연락처 폼
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label

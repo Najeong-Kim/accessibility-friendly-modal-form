@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import FormField from "./FormField";
 import ModalContainer from "./ModalContainer";
+import SubmitButton from "./SubmitButton";
 
 interface FormModalProps {
   closeModal: () => void;
@@ -44,53 +46,23 @@ const FormModal = ({ closeModal }: FormModalProps) => {
           이름과 이메일을 입력하여 연락처 정보를 제출하세요.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              이름
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              이메일
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div className="flex gap-3 pt-4">
-            <button
-              type="submit"
-              className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              제출
-            </button>
-            <button
-              type="button"
-              onClick={closeModal}
-              className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            >
-              취소
-            </button>
-          </div>
+          <FormField
+            id="name"
+            label="이름"
+            type="text"
+            value={name}
+            onChange={setName}
+            required
+          />
+          <FormField
+            id="email"
+            label="이메일"
+            type="email"
+            value={email}
+            onChange={setEmail}
+            required
+          />
+          <SubmitButton />
         </form>
       </div>
     </ModalContainer>
